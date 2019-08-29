@@ -8,8 +8,13 @@ Backpropogation, while tremendously efficient for training a neural network, is 
 
 ### Peculiar Properties
 
-Perhaps the most astonishing characteristic this algorithim has is a more visually intuitive understanding of what each neuron is doing and how it changes with each successive epoch. Below is the effect of training a network with one hidden layer of 1,000 nodes for 100 epochs. They are colormaps where white = 0
+Perhaps the most astonishing characteristic this algorithim has is a more visually intuitive understanding of what each neuron is doing and how it changes with each successive epoch. Below is the effect of training a network with one hidden layer of 1,000 nodes for 100 epochs. Each frame is generated with 
+![one](./one.gif) 
+```cmap = 'bwr', vmin = np.min(img), vmax = np.max(img)``` 
+It is hard to determine what exactly is going on, this is because the darkest blue is the most negative weight and the darkest red is the largest postivive weight. Examining the the histogram for the weight values
 
-![one](./one.gif) ![two](./two.gif)
+Normalizing the scale with the following change reveals the magic of this algorithim
 
-On the left you cannot determine what exactly is going on, this is because the darkest blue is the most negative weight and the darkest red is the largest postivive weight. Normalizing each channel, so that scale of negative values is the same as the scaling of the positive values, shows that each neuron understands a single digit. 
+```cmap = 'bwr', vmin = -np.amax(np.abs(img)), vmax = -np.amax(np.abs(img))```
+![two](./two.gif)
+
